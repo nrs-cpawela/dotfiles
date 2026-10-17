@@ -1,6 +1,6 @@
 # Agent instructions (dotfiles)
 
-Chezmoi-managed **work-machine** dotfiles for macOS (`github.com/codecio/dotfiles`). Windows 11 is a future apply path. This repo is the source of truth for shell, git, Homebrew splits, editor extension lists, and docs. It is not an application codebase.
+Chezmoi-managed **work-machine** dotfiles for macOS (`github.com/nrs-cpawela/dotfiles`). Windows 11 is a future apply path. This repo is the source of truth for shell, git, Homebrew splits, editor extension lists, and docs. It is not an application codebase.
 
 ## Non-negotiables
 

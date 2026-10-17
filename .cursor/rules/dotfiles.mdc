@@ -5,7 +5,7 @@ alwaysApply: true
 
 # dotfiles (chezmoi-managed macOS)
 
-Work-machine dotfiles for `github.com/codecio/dotfiles` (macOS now; Windows apply later). Edit source under `home/`, never live `~/.foo` files.
+Work-machine dotfiles for `github.com/nrs-cpawela/dotfiles` (macOS now; Windows apply later). Edit source under `home/`, never live `~/.foo` files.
 
 New session or cloud agent: read [AGENTS.md](../../AGENTS.md) first; invoke `/resume-dotfiles` to reconstruct git state and continue without redoing landed work.
 

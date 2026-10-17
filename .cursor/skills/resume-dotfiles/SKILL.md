@@ -4,7 +4,7 @@ description: Resume dotfiles work in a fresh Cursor session. Reconstruct git and
 disable-model-invocation: true
 ---
 
-Pick up work on `github.com/codecio/dotfiles` after a new chat or agent swap.
+Pick up work on `github.com/nrs-cpawela/dotfiles` after a new chat or agent swap.
 
 ## Read first
 

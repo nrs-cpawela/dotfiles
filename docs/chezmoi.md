@@ -52,9 +52,9 @@ Windows is a **different apply path** (second chezmoi source or a second repo), 
 | Path prefix | Included file | `user.name` / `user.email` |
 |-------------|---------------|----------------------------|
 | `~/development/` | `~/.gitconfig.work` (`dot_gitconfig.work`), which includes `~/.gitconfig.work.local` | `<work-name>` / `<work-email>` |
-| `~/home/` | `~/.gitconfig.personal` (`dot_gitconfig.personal`) | codecio / matt@colecio.com |
-| `~/dotfiles/` | `~/.gitconfig.personal` | codecio / matt@colecio.com |
-| everywhere else | default in `dot_gitconfig.tmpl` | codecio / matt@colecio.com |
+| `~/home/` | `~/.gitconfig.personal` (`dot_gitconfig.personal`) | nrs-cpawela / 67277432+nrs-cpawela@users.noreply.github.com |
+| `~/dotfiles/` | `~/.gitconfig.personal` | nrs-cpawela / 67277432+nrs-cpawela@users.noreply.github.com |
+| everywhere else | default in `dot_gitconfig.tmpl` | nrs-cpawela / 67277432+nrs-cpawela@users.noreply.github.com |
 
 Trailing slashes on `gitdir:` paths matter — they mean “this directory and everything under it.”
 

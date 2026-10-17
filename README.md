@@ -7,7 +7,7 @@ Windows 11 is a later apply path (separate tree or repo). Git identity is path-b
 ## Quick start
 
 ```bash
-git clone https://github.com/codecio/dotfiles ~/dotfiles
+git clone https://github.com/nrs-cpawela/dotfiles ~/dotfiles
 cd ~/dotfiles
 make bootstrap          # Xcode CLT, Homebrew, core Brewfile, chezmoi apply, TPM, hooks
 make help               # all targets
