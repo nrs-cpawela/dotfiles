@@ -13,6 +13,8 @@ make bootstrap          # Xcode CLT, Homebrew, core Brewfile, chezmoi apply, TPM
 make help               # all targets
 ```
 
+Intel Mac: `make bootstrap` uses mise instead of Homebrew (Tier 3 on Intel) — no sudo needed. See [docs/bootstrap.md](docs/bootstrap.md#intel-mac-no-homebrew).
+
 On a machine that already has brew and git: `make brew-bundle`, `make apply`, plus `make cli` / `make apps` / `make ext` as needed. Details: [docs/bootstrap.md](docs/bootstrap.md).
 
 ## Layout

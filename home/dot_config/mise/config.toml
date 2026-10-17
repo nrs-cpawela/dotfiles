@@ -1,0 +1,36 @@
+# Core dotfiles toolchain for Macs without Homebrew (Intel — Homebrew is Tier 3
+# there). Mirrors the formulae in the repo-root Brewfile; its casks are
+# installed by scripts/cask.sh. Install with `make bootstrap` or `make mise-bundle`.
+#
+# git: Apple's Xcode CLT git is used (mise has no prebuilt macOS git).
+# zsh-syntax-highlighting: cloned by `make zsh-plugins`.
+
+[tools]
+chezmoi = "latest"
+
+# Shell
+starship = "latest"
+# aqua registry omits darwin/amd64 for atuin; upstream still ships the asset
+"github:atuinsh/atuin" = "latest"
+zoxide = "latest"
+direnv = "latest"
+fzf = "latest"
+fd = "latest"
+ripgrep = "latest"
+eza = "latest"
+bat = "latest"
+# aqua expects a macos-amd64 tarball; upstream now ships only a universal one
+"github:fastfetch-cli/fastfetch" = "latest"
+tmux = "latest"
+
+# Git
+gh = "latest"
+
+# Pre-commit guard. pipx: tools need uv; pre-commit must be a real venv (not the
+# aqua .pyz) so the git hook's INSTALL_PYTHON can import pre_commit.
+# --managed-python: otherwise uv picks whatever python3 is on PATH — e.g. a
+# python.org install with no CA bundle, which breaks pre-commit's downloads.
+uv = "latest"
+"pipx:pre-commit" = { version = "latest", uvx_args = "--managed-python" }
+"pipx:detect-secrets" = { version = "latest", uvx_args = "--managed-python" }
+gitleaks = "latest"

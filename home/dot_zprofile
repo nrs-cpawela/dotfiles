@@ -6,3 +6,7 @@ fi
 
 # User-local binaries (agent, cursor-agent, …) — before /usr/local/bin
 export PATH="$HOME/.local/bin:$PATH"
+
+# No-brew Macs (Intel): mise shims cover login and non-interactive shells;
+# ~/.zshrc does the full `mise activate` for interactive ones.
+[[ -d $HOME/.local/share/mise/shims ]] && export PATH="$HOME/.local/share/mise/shims:$PATH"

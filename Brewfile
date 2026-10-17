@@ -1,6 +1,8 @@
 # CORE: Tools required for the dotfiles setup itself.
 # Run `make bootstrap` or `make brew-bundle`.
 # For GUI apps see Brewfile.apps. For daily CLI toolkit see Brewfile.cli.
+# No-brew Macs (Intel): formulae here are mirrored in home/dot_config/mise/config.toml
+# (keep both in sync); casks are installed by scripts/cask.sh.
 
 brew "chezmoi"
 cask "ghostty"

@@ -60,6 +60,33 @@ make ext              # optional: editor extensions from Extfile (after apps if 
 | `tpm-install` | Clone TPM to `~/.tmux/plugins/tpm` |
 | `hooks-install` | `pre-commit install` |
 
+On Intel Macs `brew` + `brew-bundle` are replaced by `mise-bundle` — see below.
+
+</details>
+
+## Intel Mac (no Homebrew)
+
+<details>
+<summary>mise + scripts/cask.sh instead of brew — picked automatically on Intel</summary>
+
+Homebrew is [Tier 3](https://docs.brew.sh/Support-Tiers) on Intel macOS: no bottles, everything builds from source, no support. The Makefile reads the hardware (`sysctl hw.optional.arm64`) and sets `PKG_MGR=mise` on Intel, `brew` on Apple Silicon. Override with `make bootstrap PKG_MGR=brew|mise`.
+
+Nothing on this path needs sudo; tools live under `~/.local`.
+
+| Brew path | No-brew path | What it does |
+|-----------|--------------|--------------|
+| `brew` | `mise` | Install [mise](https://mise.jdx.dev) to `~/.local/bin/mise` |
+| `brew-bundle` (formulae) | `mise-bundle` → `mise install` | Prebuilt x86_64 binaries listed in `home/dot_config/mise/config.toml` |
+| `brew-bundle` (casks) | `mise-bundle` → `scripts/cask.sh Brewfile` | Ghostty → `/Applications`, Nerd Font → `~/Library/Fonts` |
+| `zsh-syntax-highlighting` formula | `zsh-plugins` | Clone to `~/.local/share/zsh-syntax-highlighting` |
+| `make upgrade` (brew) | `make upgrade` (mise) | `mise upgrade`, pull zsh-syntax-highlighting, re-install the pre-commit hook |
+
+- **Tool list:** `home/dot_config/mise/config.toml` mirrors the formulae in `Brewfile`. Add a tool to both. The repo copy drives `make mise-bundle`; `make apply` deploys it to `~/.config/mise/config.toml`.
+- **Shell:** `~/.zprofile` puts mise shims on `PATH` for login and non-interactive shells. `~/.zshrc` runs `mise activate zsh`. fzf key bindings come from `fzf --zsh`.
+- **git:** Apple's Xcode CLT git — mise has no prebuilt macOS git.
+- **Casks:** `scripts/cask.sh` reads each `cask "…"` line, fetches its metadata from `formulae.brew.sh`, picks the variation for this macOS + CPU, checks sha256, and installs `app` / `font` artifacts. It is install-only: Ghostty updates itself. Casks that ship a `pkg` installer or a standalone binary (e.g. `claude-code`) are refused with a message.
+- **Not ported yet:** `make cli` (`Brewfile.cli`) and `make apps` (`Brewfile.apps`) stop with a message. Most of `Brewfile.cli` exists in mise (`mise registry <tool>`). Add what you need with `mise use -g <tool>`, then copy the line into `home/dot_config/mise/config.toml`.
+
 </details>
 
 ## Reminders (not automated)

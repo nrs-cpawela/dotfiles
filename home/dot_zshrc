@@ -23,12 +23,15 @@ if [[ -z ${HOMEBREW_PREFIX:-} ]] && command -v brew &>/dev/null; then
   HOMEBREW_PREFIX="$(brew --prefix)"
 fi
 
+# No-brew Macs: put mise tools' real paths on PATH (no shim hop per command).
+command -v mise &>/dev/null && eval "$(mise activate zsh)"
+
 # --- Aliases ---
 alias ll='ls -lhA'
 # +noall must stay before +answer; reversed, it clears the answer section too
 alias digs='dig +noall +answer'
 alias whatmypub='dig +short @ns1-1.akamaitech.net ANY whoami.akamai.net'
-alias brewup='brew update && brew upgrade && brew cleanup'
+command -v brew &>/dev/null && alias brewup='brew update && brew upgrade && brew cleanup'
 
 # eza shortcuts (ls stays real; type `eza ...` to learn it)
 if command -v eza &>/dev/null; then
@@ -106,8 +109,13 @@ fi
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 # --- zsh-syntax-highlighting (must be last) ---
-_zsh_hl="${HOMEBREW_PREFIX:-}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-if [[ -f $_zsh_hl ]]; then
-  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
-  source "$_zsh_hl"
-fi
+# Homebrew path first; no-brew Macs get a clone from `make zsh-plugins`.
+for _zsh_hl in "${HOMEBREW_PREFIX:-/nonexistent}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
+  "$HOME/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"; do
+  if [[ -f $_zsh_hl ]]; then
+    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+    source "$_zsh_hl"
+    break
+  fi
+done
+unset _zsh_hl

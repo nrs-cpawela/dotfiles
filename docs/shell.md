@@ -19,6 +19,8 @@ Config paths in the chezmoi `home/` tree and live destinations after `chezmoi ap
 
 **Homebrew prefix:** login shells get `HOMEBREW_PREFIX` from `brew shellenv` in `~/.zprofile` (ARM `/opt/homebrew` or Intel `/usr/local`). `dot_zshrc` and `fzf.zsh` use that variable. They do not call `brew --prefix` on every interactive start.
 
+**No-brew Macs (mise):** `~/.zprofile` adds `~/.local/share/mise/shims` to `PATH`; `dot_zshrc` runs `mise activate zsh`. With no `HOMEBREW_PREFIX`, `fzf.zsh` loads `fzf --zsh` and zsh-syntax-highlighting comes from `~/.local/share/zsh-syntax-highlighting`. See [bootstrap.md](bootstrap.md#intel-mac-no-homebrew).
+
 **Completions:** `compinit -C` reuses `~/.zcompdump` when it is younger than 24 hours. `make clean` deletes the dump so the next shell rebuilds it. `zsh-syntax-highlighting` is sourced last, only if the file exists.
 
 **Cursor Agent:** do **not** put `eval "$(~/.local/bin/agent shell-integration zsh)"` in `.zshrc` or `.zprofile`. That script runs `agent create-chat` (network, ~1.4s) on every new TTY and can `exec agent record`. Keep `~/.local/bin` on PATH. Use Cursor's own terminal integration inside the IDE.
